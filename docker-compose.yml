@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  env:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ubuntu_env
+    environment:
+      HOST_UID: ${USER_ID:-1000}
+      HOST_GID: ${GROUP_ID:-1000}
+      HOST_USER: ${USER:-user}
+    network_mode: host
+    volumes:
+      - type: bind
+        source: "${HOME}/Workplace"
+        target: "/home/${USER:-user}/Workplace"
+    tty: true
+    stdin_open: true
