@@ -13,7 +13,7 @@ services:
     network_mode: host
     volumes:
       - type: bind
-        source: "${HOME}/Workplace"
-        target: "/home/${USER:-user}/Workplace"
+        source: "${HOME}/workspace"
+        target: "/home/${USER:-user}/workspace"
     tty: true
     stdin_open: true
