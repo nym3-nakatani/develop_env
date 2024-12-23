@@ -10,10 +10,14 @@ services:
       HOST_UID: ${USER_ID:-1000}
       HOST_GID: ${GROUP_ID:-1000}
       HOST_USER: ${USER:-user}
+      DISPLAY: host.docker.internal:0
     network_mode: host
     volumes:
       - type: bind
         source: "${HOME}/workspace"
         target: "/home/${USER:-user}/workspace"
+      - type: bind
+        source: "/tmp/.X11-unix"
+        target: "/tmp/.X11-unix"
     tty: true
     stdin_open: true
