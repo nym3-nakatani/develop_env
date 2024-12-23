@@ -6,6 +6,13 @@ RUN apt-get update && apt-get install -y \
     git \
     curl wget \
     net-tools \
+    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y \
+    language-pack-ja \
+    && rm -rf /var/lib/apt/lists/*
+RUN update-locale LANG=ja_JP.utf8 LC_ALL=ja_JP.utf8
+
+RUN apt-get update && apt-get install -y \
     build-essential cmake \
     python3 python3-venv python3-pip \
     nodejs npm \

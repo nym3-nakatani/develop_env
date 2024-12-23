@@ -25,6 +25,10 @@ find /etc/skel/ -type f | xargs -I % cp % /home/$USER
 chown $USER:$USER /home/$USER
 find /home/$USER -maxdepth 1 | xargs chown $USER:$USER
 
+# setup
+echo "export LANG=jp_JP.UTF-8" >> /home/$USER/.bashrc
+echo "source /opt/ros/jazzy/setup.bash" >> /home/$USER/.bashrc
+
 # コマンドを指定されたユーザーで実行
 cd /home/$USER/
 gosu $USER:$USER "/bin/bash"
