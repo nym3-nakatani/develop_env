@@ -1,22 +1,20 @@
-FROM osrf/ros:jazzy-desktop
+FROM ubuntu:24.04
 
 RUN apt-get update && apt-get install -y \
     vim \
     sudo gosu \
     git \
-    curl wget \
+    curl \
     net-tools \
-    && rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get install -y \
     language-pack-ja \
-    && rm -rf /var/lib/apt/lists/*
-RUN update-locale LANG=ja_JP.utf8 LC_ALL=ja_JP.utf8
-
-RUN apt-get update && apt-get install -y \
     build-essential cmake \
     python3 python3-venv python3-pip \
     nodejs npm \
+    && update-locale LANG=ja_JP.UTF-8 LC_ALL=ja_JP.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
+
+ENV LANG=ja_JP.UTF-8 \
+    LC_ALL=ja_JP.UTF-8
 
 # エントリポイントスクリプトを作成
 COPY entrypoint.sh /usr/local/bin/entrypoint.sh

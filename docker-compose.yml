@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   env:
     build:
@@ -10,7 +8,8 @@ services:
       HOST_UID: ${USER_ID:-1000}
       HOST_GID: ${GROUP_ID:-1000}
       HOST_USER: ${USER:-user}
-      DISPLAY: host.docker.internal:0
+      HOST_PASS: ${HOST_PASS}  # run_env.sh 経由で設定される。未設定時はsudo不可
+      DISPLAY: ${DISPLAY_VAL}
     network_mode: host
     volumes:
       - type: bind
